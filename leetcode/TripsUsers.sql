@@ -49,6 +49,29 @@ rate being rounded to two decimal places.
 | 2013-10-03 |       0.50        |
 +------------+-------------------+
 
+create table trips(id int,client_id int,driver_id int,city_id int,status string,request_at date);
+insert into table trips values(1,1,10,1,"completed","2013-10-01");
+insert into table trips values(2,2,11,1,"cancelled_by_driver","2013-10-01");
+insert into table trips values(3,3,12,6,"completed","2013-10-01");
+insert into table trips values(4,4,13,7,"cancelled_by_client","2013-10-01");
+insert into table trips values(5,1,10,1,"completed","2013-10-02");
+insert into table trips values(6,2,11,6,"completed","2013-10-02");
+insert into table trips values(7,3,12,6,"completed","2013-10-02");
+insert into table trips values(8,2,12,12,"completed","2013-10-03");
+insert into table trips values(9,3,10,12,"completed","2013-10-03");
+insert into table trips values(10,4,13,12,"cancelled_by_driver","2013-10-03");
+
+drop table users;
+create table users(users_id int, banned string,role string);
+insert into table users values (1,"No","client");
+insert into table users values(2,"Yes","client");
+insert into table users values(3,"No","client");
+insert into table users values(4,"No","client");
+insert into table users values(10,"No","driver");
+insert into table users values(11,"No","driver");
+insert into table users values(12,"No","driver");
+insert into table users values(13,"No","driver");
+
 answer:
 select request_at as day,
 round(sum(case when status like '%cancelled%' then 1 else 0 end)/count(status),2) as "cancellation rate"
